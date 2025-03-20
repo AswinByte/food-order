@@ -1,12 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wait and Eat</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Exo:ital,wght@0,100..900;1,100..900&family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Sigmar&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;700&display=swap');
 
         * {
             margin: 0;
@@ -15,15 +14,15 @@
         }
 
         body {
-            font-family: "Josefin Sans", serif;
-            overflow: hidden;
+            font-family: "Josefin Sans", sans-serif;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            opacity: 0;
-            animation: pageFadeIn 1.5s ease-out forwards;
+            background: #f5f5f5;
+            overflow: hidden;
+            text-align: center;
             position: relative;
         }
 
@@ -33,192 +32,87 @@
             left: 0;
             width: 100%;
             height: 100vh;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            transition: background-image 1.5s ease-in-out;
             z-index: -1;
         }
 
-        .slideshow-container img {
-            width: 100%;
-            height: 100vh;
-            object-fit: cover;
-            position: absolute;
-            opacity: 0;
-            transition: opacity 1.5s ease-in-out;
-        }
-
-        .active {
-            opacity: 1 !important;
-        }
-
         .page {
-            text-align: center;
-            position: relative;
-            z-index: 2;
             background: rgba(255, 255, 255, 0.85);
-            padding: 30px;
+            padding: 20px;
             border-radius: 15px;
             box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            max-width: 90%;
         }
 
         h1 {
-            font-size: 3rem;
+            font-size: 2.5rem;
             font-weight: bold;
             color: #d35400;
-            display: inline-block;
         }
 
         p {
-            font-size: 1.5rem;
+            font-size: 1.2rem;
             color: #2c3e50;
-            margin-top: 10px;
-        }
-
-        .letter {
-            display: inline-block;
-            opacity: 0;
-            transform: translateY(-100px) scale(0);
-            animation: bounceEffect 1s ease-out forwards;
-            position: relative;
         }
 
         .go-button {
             margin-top: 20px;
-            padding: 15px 30px;
-            font-size: 1.5rem;
+            padding: 12px 25px;
+            font-size: 1.3rem;
             background-color: #e74c3c;
-            font-family: "Josefin Sans", serif;
             color: white;
             border: none;
-            border-radius: 10px;
+            border-radius: 8px;
             cursor: pointer;
             transition: background-color 0.3s ease, transform 0.2s ease;
-            z-index: 2;
-            position: absolute;
-            bottom: 50px;
-            left: 50%;
-            transform: translateX(-50%);
+            position: relative;
         }
 
         .go-button:hover {
             background-color: #c0392b;
-            transform: translateX(-50%) scale(1.1);
+            transform: scale(1.1);
         }
 
-        .letter {
-            display: inline-block;
-            opacity: 0;
-            transform: translateY(-10px);
-            animation: bounceEffect 1s ease-out forwards;
-            position: relative;
-            margin: 0;
-            /* Remove any extra spacing */
-            padding: 0;
-            /* Ensure no unwanted padding */
-        }
-
-
-        @keyframes pageFadeIn {
-            0% {
-                opacity: 0;
-                transform: scale(0.8);
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2rem;
             }
-
-            100% {
-                opacity: 1;
-                transform: scale(1);
+            p {
+                font-size: 1rem;
             }
-        }
-
-        @keyframes bounceEffect {
-            0% {
-                opacity: 0;
-                transform: translateY(-100px) scale(0);
+            .go-button {
+                font-size: 1rem;
+                padding: 10px 20px;
             }
-
-            50% {
-                opacity: 0.5;
-                transform: translateY(10px) scale(1.2);
-            }
-
-            100% {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-            }
-        }
-
-        #welcome-message {
-            font-size: 2rem;
-            font-weight: bold;
-            color: #e67e22;
-            margin-bottom: 10px;
         }
     </style>
 </head>
-
 <body>
-    <div class="slideshow-container">
-        <img src="./img/burger.jpg" class="slide active">
-        <img src="./img/pizza.jpg" class="slide">
-        <img src="./img/cake.jpeg" class="slide">
-        <img src="./img/indian.jpeg" class="slide">
-    </div>
+    <div class="slideshow-container"></div>
     <div class="page">
-        <h2 id="welcome-message"></h2> <!-- New Welcome Message -->
-        <h1 id="animated-text"></h1>
-        <p id="animated-paragraph"></p>
+        <h1 id="animated-text">Wait and Eat</h1>
+        <p id="animated-paragraph">Delicious food delivered to your doorstep!</p>
+        <button class="go-button" onclick="goToNextPage()">Go Now</button>
     </div>
 
-    <button class="go-button" onclick="goToNextPage()">Go Now</button>
     <script>
-        function animateText(elementId, text, delay) {
-            const element = document.getElementById(elementId);
-            element.innerHTML = "";
-            text.split(" ").forEach((char, index) => {
-                let span = document.createElement("span");
-                span.textContent = char;
-                span.classList.add("letter");
-                span.style.animationDelay = `${index * 0.15}s`;
-                element.appendChild(span);
-            });
+        const images = ["./img/burger.jpg", "./img/pizza.jpg", "./img/cake.jpeg", "./img/indian.jpeg"];
+        let currentIndex = 0;
+        const slideshowContainer = document.querySelector(".slideshow-container");
+
+        function updateBackground() {
+            slideshowContainer.style.backgroundImage = `url('${images[currentIndex]}')`;
+            currentIndex = (currentIndex + 1) % images.length;
         }
-        animateText("animated-text", "Wait and Eat ", 100);
-        animateText("animated-paragraph", "Delicious food delivered to your doorstep!", 200);
+        setInterval(updateBackground, 3000);
+        updateBackground();
 
         function goToNextPage() {
             window.location.href = "signin.html";
         }
-        function animateText(elementId, text) {
-            const element = document.getElementById(elementId);
-            element.innerHTML = ""; // Clear existing content
-
-            text.split("").forEach((char, index) => {
-                let span = document.createElement("span");
-
-                if (char === " ") {
-                    span.style.marginRight = "8px"; // Adjust space between words
-                } else {
-                    span.textContent = char;
-                    span.classList.add("letter");
-                    span.style.animationDelay = `${index * 0.1}s`;
-                }
-
-                element.appendChild(span);
-            });
-        }
-
-        let slides = document.querySelectorAll(".slide");
-        let currentIndex = 0;
-
-        function showNextSlide() {
-            slides[currentIndex].classList.remove("active");
-            currentIndex = (currentIndex + 1) % slides.length;
-            slides[currentIndex].classList.add("active");
-        }
-        setInterval(showNextSlide, 3000);
-        animateText("welcome-message", "Welcome to Our Restaurant", 50);
-        animateText("animated-text", "Wait and Eat", 100);
-        animateText("animated-paragraph", "Delicious food delivered to your doorstep!", 200);
-
     </script>
 </body>
-
 </html>

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #343131;
+            margin: 0;
+        }
+        .container {
+            width: 100%;
+            max-width: 400px;
+            background: #d2d2d2;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            position: relative;
+            opacity: 0;
+            transform: scale(0.8);
+            transition: opacity 0.3s ease-out, transform 0.3s ease-out;
+        }
+        
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 25px;
+            font-weight: bold;
+            color: #e63946;
+            cursor: pointer;
+        }
+        .close-btn:hover {
+            color: black;
+        }
+
+        .input-group {
+            margin-bottom: 15px;
+            text-align: left;
+            position: relative;
+        }
+        .input-group label {
+            display: block;
+            margin-bottom: 5px;
+            margin-left: 40px;
+        }
+        .input-group input {
+            width: 70%;
+            margin-left: 40px;
+            padding: 10px;
+            border: 1px solid #ff6600;
+            background-color: #d2d2d2;
+            border-radius: 5px;
+        }
+        .toggle-password {
+            position: absolute;
+            right: 10px;
+            top: 35px;
+            cursor: pointer;
+            font-size: 14px;
+            color: black;
+        }
+        .options {
+            display: flex;
+            justify-content: center;
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+        .login-btn {
+            width: 40%;
+            padding: 10px;
+            border: none;
+            background: #343131;
+            color: white;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .login-btn:hover {
+            background: black;
+        }
+        a {
+            color: black;
+            text-decoration: none;
+        }
+        a:hover {
+            color: #ff6600;
+        }
+        .classhome {
+            padding-left: 5px;
+        }
+    </style>
+    <script>
+        function showLogin() {
+            let container = document.querySelector(".container");
+            container.style.opacity = "1";
+            container.style.transform = "scale(1)";
+        }
+
+        function togglePassword() {
+            var passwordField = document.getElementById("password");
+            var toggleText = document.getElementById("toggleText");
+            if (passwordField.type === "password") {
+                passwordField.type = "text";
+                toggleText.textContent = "Hide";
+            } else {
+                passwordField.type = "password";
+                toggleText.textContent = "Show";
+            }
+        }
+
+        function closeLogin() {
+            let container = document.querySelector(".container");
+            container.style.opacity = "0";
+            container.style.transform = "scale(0.8)";
+            setTimeout(() => {
+                window.location.href = "homepage.html";
+            }, 300);
+        }
+
+        function redirectToHomepage(event) {
+            event.preventDefault();
+            let container = document.querySelector(".container");
+            container.style.opacity = "0";
+            container.style.transform = "scale(0.8)";
+            setTimeout(() => {
+                let body = document.querySelector("body");
+                body.style.transition = "opacity 0.5s ease-in-out";
+                body.style.opacity = "0";
+                setTimeout(() => {
+                    window.location.href = "homepage.html";
+                }, 500);
+            }, 300);
+        }
+
+        window.onload = showLogin;
+    </script>
+</head>
+<body>
+    <div class="container">
+        <span class="close-btn" onclick="closeLogin()">×</span>
+        <h2>Login</h2>
+        <form onsubmit="redirectToHomepage(event)">
+            <div class="input-group">
+                <label for="email">Email</label>
+                <input type="email, number" id="email" placeholder="Enter your email or number" required>
+            </div>
+            <div class="input-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" placeholder="Enter your password" required>
+                <span class="toggle-password" id="toggleText" onclick="togglePassword()">Show</span>
+            </div>
+            <div class="options">
+                <a href="#">Forgot password?</a>
+            </div>
+            <button type="submit" class="login-btn">Login</button>
+        </form>
+        <p>Don’t have an account? <a href="signup.html">Sign up</a></p>
+        
+    </div>
+</body>
+</html>

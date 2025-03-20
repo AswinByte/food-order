@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Burger Menu</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Exo:wght@100..900&family=Josefin+Sans:wght@100..700&family=Sigmar&display=swap');
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f8f8;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            transform: scale(0.8);
+            opacity: 0;
+            transition: transform 0.5s ease-out, opacity 0.5s ease-out;
+        }
+
+        .menu-container {
+            max-width: 800px;
+            margin: 20px auto;
+            background: white;
+            padding: 20px;
+            font-family: "Exo", serif;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            position: relative;
+            opacity: 1;
+            transform: scale(1);
+            transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+        }
+
+        .menu-name {
+            font-family: "Josefin Sans", serif;
+        }
+
+        .burger-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid #ddd;
+            padding: 15px 0;
+        }
+
+        .burger-item img {
+            width: 100px;
+            height: 100px;
+            border-radius: 10px;
+            margin-right: 15px;
+        }
+
+        .burger-details {
+            flex: 1;
+            text-align: left;
+        }
+
+        .price {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #e63946;
+        }
+        .add-to-cart,
+        .remove-from-cart {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin: 5px;
+        }
+
+        .remove-from-cart {
+            background-color: #dc3545;
+        }
+
+        #total-price {
+            font-size: 1.5em;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        .place-order {
+            background-color: rgb(66, 63, 63);
+            color: white;
+            border: none;
+            padding: 15px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 1.2em;
+            margin-top: 20px;
+        }
+
+        .place-order:hover {
+            background-color: black;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 3px;
+            right: 15px;
+            font-size: 35px;
+            cursor: pointer;
+            color: #e63946;
+            font-weight: bold;
+        }
+
+        .close-btn:hover {
+            color: black;
+        }
+
+        .menu-hide {
+            opacity: 0;
+            transform: scale(0.8);
+            pointer-events: none;
+        }
+
+        #cart-container {
+
+            text-align: left;
+        }
+
+        #cart-items {
+            list-style: none;
+            padding: 0;
+        }
+
+        #total-price {
+            font-size: 1.5em;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        #total-price {
+            font-size: 1.5em;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        .place-order {
+            background-color: rgb(66, 63, 63);
+            color: white;
+            border: none;
+            padding: 15px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 1.2em;
+            margin-top: 20px;
+        }
+
+        .place-order:hover {
+            background-color: black;
+        }
+
+        #cardbutton {
+            background-color: #28a745;
+            color: #fff;
+            border: none;
+            padding: 3px 12px;
+            font-size: 1rem;
+            cursor: pointer;
+            border-radius: 6px;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        #cardbutton:hover {
+            background-color: #218838;
+            transform: scale(1.05);
+        }
+
+        #cardbutton:active {
+            transform: scale(0.95);
+        }
+
+        .btn {
+            background-color: #28a745;
+            color: white;
+            border: none;
+       
+            cursor: pointer;
+            border-radius: 5px;
+            margin: 5px;
+        }
+
+        .btn-remove {
+            background-color: #dc3545;
+        }
+        .btn, .btn-remove {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 8px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin: 5px;
+    font-size: 1rem;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+/* Hover effect */
+.btn:hover, .btn-remove:hover {
+    transform: scale(1.05);
+}
+
+/* Click animation */
+.btn:active, .btn-remove:active {
+    transform: scale(0.95);
+}
+
+/* Remove button styling */
+.btn-remove {
+    background-color: #dc3545;
+}
+
+.btn-remove:hover {
+    background-color: #c82333;
+}
+/* Modal Background */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(5px);
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+/* Modal Box */
+.modal-content {
+    background-color: white;
+    padding: 25px;
+    border-radius: 12px;
+    text-align: center;
+    width: 350px;
+    max-width: 90%;
+    margin: 15% auto;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3);
+    transform: translateY(-50px);
+    opacity: 0;
+    animation: slideIn 0.5s ease-in-out forwards;
+}
+
+/* Close Button */
+.close-btn {
+    position: absolute;
+    top: 12px;
+    right: 18px;
+    font-size: 25px;
+    cursor: pointer;
+    color: #ff3333;
+    transition: color 0.3s ease-in-out;
+}
+
+.close-btn:hover {
+    color: black;
+}
+
+/* Button Styling */
+.modal-content button {
+    background-color: #28a745;
+    color: white;
+    padding: 12px 18px;
+    border: none;
+    cursor: pointer;
+    border-radius: 6px;
+    font-size: 1rem;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.modal-content button:hover {
+    background-color: #218838;
+    transform: scale(1.05);
+}
+
+/* Fade In Animation */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Slide In Animation */
+@keyframes slideIn {
+    from {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Fade Out Animation */
+@keyframes fadeOut {
+    from { opacity: 1; }
+    to { opacity: 0; }
+}
+
+    </style>
+    <script>
+
+        let cart = {};
+
+        function updateCart() {
+            let cartItems = document.getElementById("cart-items");
+            let totalPrice = document.getElementById("total-price");
+            cartItems.innerHTML = "";
+            let total = 0;
+
+            for (let item in cart) {
+                let li = document.createElement("li");
+                li.innerHTML = `
+            ${item} - Rs${cart[item].price} x ${cart[item].quantity} 
+            <button id="cardbutton" onclick="changeQuantity('${item}', 1)">+</button>
+            <button id="cardbutton" onclick="changeQuantity('${item}', -1)">-</button>
+            <button id="removebutton" class="btn btn-remove" onclick="removeItem('${item}')">Remove</button>
+        `;
+                cartItems.appendChild(li);
+                total += cart[item].price * cart[item].quantity;
+            }
+            totalPrice.innerText = "Total: Rs" + total;
+        }
+
+        function addToCart(price, itemName) {
+            if (!cart[itemName]) {
+                cart[itemName] = { price: price, quantity: 1 };
+            } else {
+                cart[itemName].quantity++;
+            }
+            updateCart();
+        }
+
+        function changeQuantity(itemName, change) {
+            if (cart[itemName]) {
+                cart[itemName].quantity += change;
+                if (cart[itemName].quantity <= 0) {
+                    delete cart[itemName];
+                }
+            }
+            updateCart();
+        }
+
+        function removeItem(itemName) {
+            delete cart[itemName];
+            updateCart();
+        }
+
+        function closeMenu() {
+            let menu = document.querySelector(".menu-container");
+            menu.classList.add("menu-hide");
+            setTimeout(() => {
+                window.location.href = "../homepage.html";
+            }, 500);
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            setTimeout(() => {
+                document.body.style.transform = "scale(1)";
+                document.body.style.opacity = "1";
+            }, 100);
+        });
+        function placeOrder() {
+    if (Object.keys(cart).length === 0) {
+        alert("Your cart is empty! Please add items before placing an order.");
+    } else {
+        let confirmation = confirm("Are you sure you want to place the order?");
+        if (confirmation) {
+            let modal = document.getElementById("order-modal");
+            modal.style.display = "block"; 
+            cart = {};
+            updateCart();
+
+    
+            setTimeout(closeModal, 4000);
+        }
+    }
+}
+
+function closeModal() {
+    let modal = document.getElementById("order-modal");
+    modal.style.animation = "fadeOut 0.5s ease-in-out";
+    setTimeout(() => {
+        modal.style.display = "none"; 
+        modal.style.animation = ""; 
+    }, 500);
+}
+
+    </script>
+</head>
+
+<body>
+    <div class="menu-container">
+        <span class="close-btn" onclick="closeMenu()">×</span>
+        <h1 class="menu-name">Burger Menu 🍔</h1>
+        <hr>
+
+
+        <div class="burger-item">
+            <img src="../img/Cheese Burger.jpeg" alt="Cheese Burger">
+            <div class="burger-details">
+                <h3>Cheese Burger</h3>
+                <p>Soft burger bun, Grilled beef/chicken patty, Cheddar cheese, Lettuce, Tomato, Onion, Mayonnaise &
+                    ketchup</p>
+            </div>
+            <span class="price">Rs120</span>
+            <button class="btn" onclick="addToCart(120, 'Cheese Burger')">Add</button>
+        </div>
+
+        <div class="burger-item">
+            <img src="../img/Chicken Burger.jpeg" alt="Chicken Burger">
+            <div class="burger-details">
+                <h3>Chicken Burger</h3>
+                <p>Soft burger bun, Crispy fried chicken patty, Lettuce, Pickles, Garlic mayo, Tomato</p>
+            </div>
+            <span class="price">Rs150</span>
+            <button class="btn" onclick="addToCart(150, 'Chicken Burger')">Add</button>
+        </div>
+
+        <div class="burger-item">
+            <img src="../img/Veg Burger.png" alt="Veg Burger">
+            <div class="burger-details">
+                <h3>Veg Burger</h3>
+                <p>Soft burger bun, Crispy vegetable patty, Lettuce, Tomato, Onion, Cheese, Mayonnaise</p>
+            </div>
+            <span class="price">Rs100</span>
+            <button class="btn" onclick="addToCart(100, 'Veg Burger')">Add</button>
+        </div>
+
+
+        <div id="cart-container">
+            <h2>Cart 🛒</h2>
+            <ul id="cart-items"></ul>
+
+            <div id="total-price">Total:Rs0</div>
+            <button class="place-order" onclick="placeOrder()">Place Your Order</button>
+        </div>
+    </div>
+    </div>
+    <div id="order-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">×</span>
+            <h2>🎉 Order Confirmed!</h2>
+            <p>Your delicious Burger is on the way! 🍔 <br> Thank you for ordering with us.</p>
+            <button onclick="closeModal()">OK</button>
+        </div>
+    </div>
+    
+</body>
+
+</html>

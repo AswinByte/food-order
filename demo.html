@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Food Order - Home</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Exo:ital,wght@0,100..900;1,100..900&family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Sigmar&display=swap');
+        
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+        }
+        body {
+            opacity: 0;
+            transform: translateY(-20px);
+            transition: opacity 1s ease-out, transform 1s ease-out;
+        }
+        body.loaded {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        label {
+            color: #d6d6d6;
+            font-size: 30px;
+            font-family: "Sigmar", serif;
+        }
+        nav {
+            background-color: #4f4f51;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .menu-icon {
+            display: none;
+            font-size: 30px;
+            color: white;
+            cursor: pointer;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            font-family: "Josefin Sans", serif;
+        }
+        nav ul li {
+            margin: 0 15px;
+        }
+        nav ul li a {
+            text-decoration: none;
+            color: #d6d6d6;
+            font-size: 18px;
+            padding: 8px 12px;
+            transition: 0.3s;
+        }
+        nav ul li a:hover {
+            background-color: #343131;
+            border-radius: 5px;
+        }
+
+        @media screen and (max-width: 928px) {
+            nav {
+                flex-direction: row;
+                justify-content: space-between;
+            }
+            .menu-icon {
+                display: block;
+                order: 2;
+            }
+            nav ul {
+                flex-direction: column;
+                position: absolute;
+                top: 60px;
+                right: 0;
+                background: #4f4f51;
+                width: 200px;
+                display: none;
+                text-align: right;
+                padding: 10px;
+                border-radius: 5px;
+            }
+            nav ul.show {
+                display: flex;
+            }
+            nav ul li {
+                margin: 10px 0;
+            }
+        }
+    </style>
+    <script>
+        window.onload = function() {
+            document.body.classList.add("loaded");
+        };
+        function toggleMenu() {
+            document.getElementById("menu").classList.toggle("show");
+        }
+    </script>
+</head>
+<body>
+    <nav>
+        <label class="quotes">Wait And Eat</label>
+        <div class="menu-icon" onclick="toggleMenu()">☰</div>
+        <ul id="menu">
+            <li><a href="homepage.html">Home</a></li>
+            <li><a href="menu.html">Menu</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="signin.html">Login</a></li>
+            <li><a href="#" onclick="exitApplication()">Exit</a></li>
+        </ul>
+    </nav>
+</body>
+</html>

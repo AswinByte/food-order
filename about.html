@@ -1,79 +1,254 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Us - Food Order</title>
-    <link rel="stylesheet" href="styles.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About Us - Aswin's Food Hub</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f8f9fa;
-        }
-        .header {
-            background-color: #ff6600;
-            color: white;
-            text-align: center;
-            padding: 20px;
-            font-size: 24px;
-        }
-        .container {
-            width: 90%;
-            max-width: 800px;
-            margin: 20px auto;
-            text-align: center;
-        }
-        .section {
-            background: white;
-            padding: 20px;
-            margin-bottom: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            
-        }
+      html {
+        scroll-behavior: smooth;
+      }
 
-        .footer {
-            background: #333;
-            color: white;
-            text-align: center;
-            padding: 10px;
-            margin-top: 20px;
-        }ul{
-            list-style-type: none;
+      body {
+        font-family: "Segoe UI", sans-serif;
+        background-color: #fff8f0;
+        color: #333;
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden;
+      }
+
+      .container {
+        max-width: 1000px;
+        margin: 40px auto;
+        padding: 20px;
+      }
+
+      .main-box {
+        background-color: #fff;
+        padding: 30px;
+        border-radius: 15px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        position: relative;
+        overflow: hidden;
+        min-height: 100vh;
+
+        /* Animation */
+        opacity: 0;
+        transform: translateY(40px);
+        animation: fadeSlideIn 1s ease-out forwards;
+      }
+
+      @keyframes fadeSlideIn {
+        to {
+          opacity: 1;
+          transform: translateY(0);
         }
-        .homepage{
-            background: #333;
-            color: white;
-            text-decoration: none;
+      }
+
+      .close-btn {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        background-color: #d35400;
+        color: #fff;
+        border: none;
+        border-radius: 50%;
+        width: 32px;
+        height: 32px;
+        font-size: 18px;
+        cursor: pointer;
+        line-height: 32px;
+        text-align: center;
+        padding: 0;
+        transition: background-color 0.3s;
+      }
+
+      .close-btn:hover {
+        background-color: #a04000;
+      }
+
+      ul {
+        list-style-type: none;
+        padding-left: 0;
+      }
+
+      h1,
+      h2 {
+        color: #d35400;
+      }
+
+      p {
+        line-height: 1.8;
+      }
+
+      .section {
+        margin-bottom: 40px;
+      }
+
+      .team {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+      }
+
+      .team-member {
+        background-color: #fff;
+        padding: 15px;
+        border-radius: 10px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        flex: 1 1 250px;
+      }
+
+      .gallery {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 20px;
+      }
+
+      .gallery img {
+        width: 100%;
+        max-height: 300px;
+        object-fit: cover;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        margin-bottom: 20px;
+      }
+
+      img {
+        max-width: 100%;
+        height: auto;
+      }
+
+      a {
+        color: #d35400;
+        text-decoration: none;
+      }
+
+      .contact {
+        background-color: #fceae0;
+        padding: 20px;
+        border-radius: 10px;
+      }
+
+      @media (max-width: 600px) {
+        .close-btn {
+          width: 28px;
+          height: 28px;
+          font-size: 16px;
+          top: 10px;
+          right: 10px;
         }
+      }
     </style>
-</head>
-<body>
-    <div class="header">About Us</div>
+  </head>
+  <body>
     <div class="container">
+      <div class="main-box" id="aboutBox">
+        <button
+          class="close-btn"
+          onclick="window.location.href='homepage.html'"
+        >
+          ✖
+        </button>
+
+        <h1>About Us</h1>
+
         <div class="section">
-            <h2>Who We Are</h2>
-            <p>Food Order is a leading online food delivery platform that connects people with the best restaurants in their city.</p>
+          <h2>Business Introduction</h2>
+          <p>
+            Welcome to <strong>Aswin's Food Hub</strong> – your go-to destination
+            for delicious and hygienic food delivered right to your doorstep. We
+            specialize in South Indian, North Indian, and Fast Food cuisines.
+          </p>
+          <p>
+            Founded in 2024, our goal is to make quality food easily accessible
+            for everyone with a click.
+          </p>
         </div>
+
         <div class="section">
-            <h2>Our Mission</h2>
-            <p>To provide fast, reliable, and delicious food delivery services that bring joy to our customers.</p>
+          <h2>Our Mission</h2>
+          <p>
+            "Bringing tasty and fresh meals to your home at affordable prices
+            with fast delivery."
+          </p>
         </div>
+
         <div class="section">
-            <h2>Why Choose Us?</h2>
-            <ul>
-                <li>Wide variety of cuisines</li>
-                <li>Fast and secure delivery</li>
-                <li>Exclusive discounts and offers</li>
-            </ul>
+          <h2>Why Choose Us?</h2>
+          <ul>
+            <li>✅ Hygienic Cooking</li>
+            <li>✅ Super Fast Delivery</li>
+            <li>✅ Budget-Friendly Meals</li>
+            <li>✅ Home-style Taste</li>
+            <li>✅ Locally Sourced Ingredients</li>
+          </ul>
         </div>
+
+        <div class="section">
+          <h2>Our Story</h2>
+          <p>
+            It all started when Aswin, a food enthusiast from Tamil Nadu,
+            decided to combine his passion for food with technology. With a
+            small team and big dreams, Aswin's Food Hub was born to serve
+            mouth-watering dishes while ensuring convenience and satisfaction.
+          </p>
+        </div>
+
+        <div class="section">
+          <h2>Meet Our Team</h2>
+          <div class="team">
+            <div class="team-member">
+              <h3>Chef Ramesh</h3>
+              <p>
+                15+ years of experience in traditional South Indian cooking.
+              </p>
+            </div>
+            <div class="team-member">
+              <h3>Delivery Head - Suresh</h3>
+              <p>Ensures every order reaches on time with a smile.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="section">
+          <h2>Service Area</h2>
+          <p>
+            We currently deliver across <strong>Trichy</strong> and nearby areas.
+            Expanding soon!
+          </p>
+        </div>
+
+        <div class="section">
+          <h2>Our Promise</h2>
+          <p>
+            We are committed to providing top-notch quality, great taste, and
+            timely delivery every single time you order.
+          </p>
+        </div>
+
+        <div class="section">
+          <h2>Gallery</h2>
+          <div class="gallery">
+            <img src="./img/kit.jpg" alt="Kitchen Photo" />
+            <img src="./img/deliver.jpg" alt="Delivery in Action" />
+          </div>
+        </div>
+
+        <div class="section contact">
+          <h2>Contact Us</h2>
+          <p>📧 Email: support@aswinsfoodhub.com</p>
+          <p>📞 Phone: +91-9876543210</p>
+          <p><a href="/contact">Go to Contact Page</a></p>
+        </div>
+
+        <div class="section">
+          <h2>Customer Reviews</h2>
+          <p>⭐️⭐️⭐️⭐️⭐️ - "Tastes like home! Highly recommended." - Priya</p>
+          <p>⭐️⭐️⭐️⭐️ - "On-time delivery and amazing biryani!" - Karthik</p>
+        </div>
+      </div>
     </div>
-    <div class="footer">
-        &copy; 2025 Food Order. All rights reserved.
-      
-    </div>
-    
-</body>
+  </body>
 </html>

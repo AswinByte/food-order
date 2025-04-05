@@ -1,165 +1,184 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Menu items</title>
     <style>
-        .container {
-            width: 90%;
-            max-width: 1000px;
-            margin: 20px auto;
-            text-align: center;
-            font-family: "Exo", serif;
-            position: relative;
-            opacity: 0;
-            transform: translateY(-20px);
-            animation: fadeIn 0.5s ease-in-out forwards;
-        }
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(-20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        .section {
-            background: white;
-            padding: 20px;
-            margin-bottom: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        .featured-dishes img {
-            width: 100%;
-            max-width: 300px;
-            border-radius: 10px;
-        }
-        .categories {
-            display: flex;
-            justify-content: space-around;
-            flex-wrap: wrap;
-        }
-        .category {
-            background: #ff6600;
-            color: white;
-            padding: 10px 20px;
-            border-radius: 20px;
-            margin: 10px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-        .list-categori{
-             text-decoration: none;
-             color: #f8f9fa;
-        } 
-        .featured-dishes img, .categories img {
-            width: 100%;
-            max-width: 150px;
-            border-radius: 10px;
-            display: block;
-            margin: 10px auto;
-        }
-        .list-img{
-            width: 100px;
-            height: 100px;
-        }
-        .category-list{
-            text-decoration: none;
-            color:white ;
-        }
-        .close-btn {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background: red;
-            color: white;
-            border: none;
-            padding: 5px 10px;
-            font-size: 16px;
-            cursor: pointer;
-            border-radius: 5px;
-            transition: transform 0.3s ease-in-out;
-        }
-        .close-btn:hover {
-            transform: scale(1.1);
-        }
-        .search-bar {
-    width: 80%;
-    padding: 12px;
-    font-size: 16px;
-    border: 2px solid #ff6600;
-    border-radius: 20px;
-    outline: none;
-    margin-bottom: 20px;
-    text-align: start;
-    transition: 0.3s ease-in-out;
-}
+      @import url("https://fonts.googleapis.com/css2?family=Exo:ital,wght@0,100..900;1,100..900&family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Sigmar&display=swap");
 
-.search-bar:focus {
-    border-color: #ff4500;
-    box-shadow: 0 0 8px rgba(255, 102, 0, 0.5);
-}
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f8f9fa;
+      }
+      .container {
+        width: 90%;
+        max-width: 1000px;
+        margin: 20px auto;
+        text-align: center;
+        font-family: "Exo", serif;
+        position: relative;
+        opacity: 0;
+        transform: translateY(-20px);
+        animation: fadeIn 0.5s ease-in-out forwards;
+      }
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(-20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .section {
+        background: white;
+        padding: 20px;
+        margin-bottom: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+      .featured-dishes img {
+        width: 100%;
+        max-width: 300px;
+        border-radius: 10px;
+      }
+      .categories {
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+      }
+      .category {
+        background: #ff6600;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 20px;
+        margin: 10px;
+        font-weight: bold;
+        cursor: pointer;
+      }
+      .list-categori {
+        text-decoration: none;
+        color: #f8f9fa;
+      }
+      .featured-dishes img,
+      .categories img {
+        width: 100%;
+        max-width: 150px;
+        border-radius: 10px;
+        display: block;
+        margin: 10px auto;
+      }
+      .list-img {
+        width: 100px;
+        height: 100px;
+      }
+      .category-list {
+        text-decoration: none;
+        color: white;
+      }
+      .close-btn {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background: red;
+        color: white;
+        border: none;
+        padding: 5px 10px;
+        font-size: 16px;
+        cursor: pointer;
+        border-radius: 5px;
+        transition: transform 0.3s ease-in-out;
+      }
+      .close-btn:hover {
+        transform: scale(1.1);
+      }
+      .search-bar {
+        width: 80%;
+        padding: 12px;
+        font-size: 16px;
+        border: 2px solid #ff6600;
+        border-radius: 20px;
+        outline: none;
+        margin-bottom: 20px;
+        text-align: start;
+        transition: 0.3s ease-in-out;
+      }
 
+      .search-bar:focus {
+        border-color: #ff4500;
+        box-shadow: 0 0 8px rgba(255, 102, 0, 0.5);
+      }
     </style>
     <script>
-        function goToHomePage() {
-            document.body.style.opacity = '0';
-            document.body.style.transition = 'opacity 0.5s ease-in-out';
-            setTimeout(() => {
-                window.location.href = 'homepage.html';
-            }, 500);
-        }
-        function filterCategories() {
-    let input = document.getElementById('search').value.toLowerCase();
-    let categories = document.getElementsByClassName('category');
-    
-    for (let i = 0; i < categories.length; i++) {
-        let categoryName = categories[i].textContent.toLowerCase();
-        if (categoryName.includes(input)) {
-            categories[i].style.display = 'block';
-        } else {
-            categories[i].style.display = 'none';
-        }
-    }
-}
+      function goToHomePage() {
+        document.body.style.opacity = "0";
+        document.body.style.transition = "opacity 0.5s ease-in-out";
+        setTimeout(() => {
+          window.location.href = "homepage.html";
+        }, 500);
+      }
+      function filterCategories() {
+        let input = document.getElementById("search").value.toLowerCase();
+        let categories = document.getElementsByClassName("category");
 
+        for (let i = 0; i < categories.length; i++) {
+          let categoryName = categories[i].textContent.toLowerCase();
+          if (categoryName.includes(input)) {
+            categories[i].style.display = "block";
+          } else {
+            categories[i].style.display = "none";
+          }
+        }
+      }
     </script>
-</head>
-<body>
+  </head>
+  <body>
     <div class="container">
-        <button class="close-btn" onclick="goToHomePage()">X</button>
-        <div class="section featured-dishes">
-            <h2>Featured Dishes</h2>
-            <img src="img/food.jpeg"  alt="Featured Dish">
-            <p>Try our delicious special dish of the day!</p>
-        </div>
-        <div class="section">
-            <input type="text" id="search" class="search-bar" placeholder="Search food..." onkeyup="filterCategories()">
+      <button class="close-btn" onclick="goToHomePage()">X</button>
+      <div class="section featured-dishes">
+        <h2>Featured Dishes</h2>
+        <img src="img/food.jpeg" alt="Featured Dish" />
+        <p>Try our delicious special dish of the day!</p>
+      </div>
+      <div class="section">
+        <input
+          type="text"
+          id="search"
+          class="search-bar"
+          placeholder="Search food..."
+          onkeyup="filterCategories()"
+        />
 
-            <h2>Food Categories</h2>
-            <div class="categories">
-                <div class="category"> 
-                    <a class="category-list" href="./menu/pizza.html">Pizza
-                    <img class="list-img" src="img/pizza.jpeg" alt="Pizza" ></a>
-                </div>
-                <div class="category">
-                    <a class="category-list" href="./menu/burger.html">Burgers
-                    <img class="list-img" src="img/burger.jpg" alt="Burgers"></a>
-                </div>
-                <div class="category">
-                    <a class="category-list" href="./menu/indianfood.html">Indian
-                    <img class="list-img" src="./img/indfood.png" alt="Indian Food"></a>
-                </div>
-                <div class="category">
-                    <a class="category-list" href="./menu/dessert.html">Desserts
-                    <img class="list-img" src="img/dessets.jpeg" alt="Desserts"></a>
-                </div>
-            </div>
+        <h2>Food Categories</h2>
+        <div class="categories">
+          <div class="category">
+            <a class="category-list" href="./menu/pizza.html"
+              >Pizza <img class="list-img" src="img/pizza.jpeg" alt="Pizza"
+            /></a>
+          </div>
+          <div class="category">
+            <a class="category-list" href="./menu/burger.html"
+              >Burgers <img class="list-img" src="img/burger.jpg" alt="Burgers"
+            /></a>
+          </div>
+          <div class="category">
+            <a class="category-list" href="./menu/indianfood.html"
+              >Indian
+              <img class="list-img" src="./img/indfood.png" alt="Indian Food"
+            /></a>
+          </div>
+          <div class="category">
+            <a class="category-list" href="./menu/dessert.html"
+              >Desserts
+              <img class="list-img" src="img/dessets.jpeg" alt="Desserts"
+            /></a>
+          </div>
         </div>
+      </div>
     </div>
-</body>
+  </body>
 </html>
